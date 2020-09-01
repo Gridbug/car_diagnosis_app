@@ -10,7 +10,8 @@ CREATE TABLE external_defects (
 CREATE TABLE external_defect_photos (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	external_defect_id INTEGER NOT NULL REFERENCES external_defects(id) ON DELETE CASCADE,
-	photo BLOB);
+	photo BLOB,
+	description TEXT);
 
 CREATE TABLE tires (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,4 +21,5 @@ CREATE TABLE tires (
 CREATE TABLE tire_photos (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	tire_id INTEGER NOT NULL REFERENCES tires(id) ON DELETE CASCADE,
-	name TEXT NOT NULL);
+	photo BLOB,
+	description TEXT);
