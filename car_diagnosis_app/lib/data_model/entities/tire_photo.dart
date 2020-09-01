@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:car_diagnosis_app/entities/entity.dart';
+import 'package:car_diagnosis_app/data_model/entities/entity.dart';
 
 part 'tire_photo.g.dart';
 
