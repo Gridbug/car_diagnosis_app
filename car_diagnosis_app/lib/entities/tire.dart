@@ -4,11 +4,16 @@ import 'package:built_value/serializer.dart';
 part 'tire.g.dart';
 
 abstract class Tire implements Built<Tire, TireBuilder> {
+  Tire._();
+  factory Tire([void Function(TireBuilder) updates]) = _$Tire;
+
   static Serializer<Tire> get serializer => _$tireSerializer;
 
   int get id;
 
-  factory Tire([void Function(TireBuilder) updates]) = _$Tire;
+  @BuiltValueField(wireName: 'car_id')
+  int get carId;
 
-  Tire._();
+  @BuiltValueField(wireName: 'tire_side')
+  int get tireSide;
 }

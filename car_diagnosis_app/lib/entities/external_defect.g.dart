@@ -22,10 +22,15 @@ class _$ExternalDefectSerializer
     final result = <Object>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'car_id',
+      serializers.serialize(object.carId, specifiedType: const FullType(int)),
     ];
-
+    if (object.name != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(object.name,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -45,6 +50,10 @@ class _$ExternalDefectSerializer
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
+        case 'car_id':
+          result.carId = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -60,17 +69,19 @@ class _$ExternalDefect extends ExternalDefect {
   @override
   final int id;
   @override
+  final int carId;
+  @override
   final String name;
 
   factory _$ExternalDefect([void Function(ExternalDefectBuilder) updates]) =>
       (new ExternalDefectBuilder()..update(updates)).build();
 
-  _$ExternalDefect._({this.id, this.name}) : super._() {
+  _$ExternalDefect._({this.id, this.carId, this.name}) : super._() {
     if (id == null) {
       throw new BuiltValueNullFieldError('ExternalDefect', 'id');
     }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('ExternalDefect', 'name');
+    if (carId == null) {
+      throw new BuiltValueNullFieldError('ExternalDefect', 'carId');
     }
   }
 
@@ -85,18 +96,22 @@ class _$ExternalDefect extends ExternalDefect {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ExternalDefect && id == other.id && name == other.name;
+    return other is ExternalDefect &&
+        id == other.id &&
+        carId == other.carId &&
+        name == other.name;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, id.hashCode), name.hashCode));
+    return $jf($jc($jc($jc(0, id.hashCode), carId.hashCode), name.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('ExternalDefect')
           ..add('id', id)
+          ..add('carId', carId)
           ..add('name', name))
         .toString();
   }
@@ -110,6 +125,10 @@ class ExternalDefectBuilder
   int get id => _$this._id;
   set id(int id) => _$this._id = id;
 
+  int _carId;
+  int get carId => _$this._carId;
+  set carId(int carId) => _$this._carId = carId;
+
   String _name;
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
@@ -119,6 +138,7 @@ class ExternalDefectBuilder
   ExternalDefectBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
+      _carId = _$v.carId;
       _name = _$v.name;
       _$v = null;
     }
@@ -140,7 +160,8 @@ class ExternalDefectBuilder
 
   @override
   _$ExternalDefect build() {
-    final _$result = _$v ?? new _$ExternalDefect._(id: id, name: name);
+    final _$result =
+        _$v ?? new _$ExternalDefect._(id: id, carId: carId, name: name);
     replace(_$result);
     return _$result;
   }

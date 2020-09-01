@@ -20,6 +20,11 @@ class _$TireSerializer implements StructuredSerializer<Tire> {
     final result = <Object>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'car_id',
+      serializers.serialize(object.carId, specifiedType: const FullType(int)),
+      'tire_side',
+      serializers.serialize(object.tireSide,
+          specifiedType: const FullType(int)),
     ];
 
     return result;
@@ -40,6 +45,14 @@ class _$TireSerializer implements StructuredSerializer<Tire> {
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
+        case 'car_id':
+          result.carId = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'tire_side':
+          result.tireSide = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
       }
     }
 
@@ -50,13 +63,23 @@ class _$TireSerializer implements StructuredSerializer<Tire> {
 class _$Tire extends Tire {
   @override
   final int id;
+  @override
+  final int carId;
+  @override
+  final int tireSide;
 
   factory _$Tire([void Function(TireBuilder) updates]) =>
       (new TireBuilder()..update(updates)).build();
 
-  _$Tire._({this.id}) : super._() {
+  _$Tire._({this.id, this.carId, this.tireSide}) : super._() {
     if (id == null) {
       throw new BuiltValueNullFieldError('Tire', 'id');
+    }
+    if (carId == null) {
+      throw new BuiltValueNullFieldError('Tire', 'carId');
+    }
+    if (tireSide == null) {
+      throw new BuiltValueNullFieldError('Tire', 'tireSide');
     }
   }
 
@@ -70,17 +93,25 @@ class _$Tire extends Tire {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Tire && id == other.id;
+    return other is Tire &&
+        id == other.id &&
+        carId == other.carId &&
+        tireSide == other.tireSide;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, id.hashCode));
+    return $jf(
+        $jc($jc($jc(0, id.hashCode), carId.hashCode), tireSide.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Tire')..add('id', id)).toString();
+    return (newBuiltValueToStringHelper('Tire')
+          ..add('id', id)
+          ..add('carId', carId)
+          ..add('tireSide', tireSide))
+        .toString();
   }
 }
 
@@ -91,11 +122,21 @@ class TireBuilder implements Builder<Tire, TireBuilder> {
   int get id => _$this._id;
   set id(int id) => _$this._id = id;
 
+  int _carId;
+  int get carId => _$this._carId;
+  set carId(int carId) => _$this._carId = carId;
+
+  int _tireSide;
+  int get tireSide => _$this._tireSide;
+  set tireSide(int tireSide) => _$this._tireSide = tireSide;
+
   TireBuilder();
 
   TireBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
+      _carId = _$v.carId;
+      _tireSide = _$v.tireSide;
       _$v = null;
     }
     return this;
@@ -116,7 +157,8 @@ class TireBuilder implements Builder<Tire, TireBuilder> {
 
   @override
   _$Tire build() {
-    final _$result = _$v ?? new _$Tire._(id: id);
+    final _$result =
+        _$v ?? new _$Tire._(id: id, carId: carId, tireSide: tireSide);
     replace(_$result);
     return _$result;
   }
