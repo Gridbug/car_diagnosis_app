@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sqlbrite/sqlbrite.dart';
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final a = Provider.of<Future<BriteDatabase>>(context);
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
