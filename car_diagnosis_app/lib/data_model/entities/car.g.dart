@@ -98,7 +98,7 @@ class _$Car extends Car {
   }
 }
 
-class CarBuilder implements Builder<Car, CarBuilder> {
+class CarBuilder implements Builder<Car, CarBuilder>, EntityBuilder<int> {
   _$Car _$v;
 
   int _id;
@@ -121,7 +121,7 @@ class CarBuilder implements Builder<Car, CarBuilder> {
   }
 
   @override
-  void replace(Car other) {
+  void replace(covariant Car other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }

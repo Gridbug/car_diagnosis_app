@@ -115,7 +115,7 @@ class _$Tire extends Tire {
   }
 }
 
-class TireBuilder implements Builder<Tire, TireBuilder> {
+class TireBuilder implements Builder<Tire, TireBuilder>, EntityBuilder<int> {
   _$Tire _$v;
 
   int _id;
@@ -143,7 +143,7 @@ class TireBuilder implements Builder<Tire, TireBuilder> {
   }
 
   @override
-  void replace(Tire other) {
+  void replace(covariant Tire other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }

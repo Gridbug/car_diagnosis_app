@@ -118,7 +118,9 @@ class _$ExternalDefect extends ExternalDefect {
 }
 
 class ExternalDefectBuilder
-    implements Builder<ExternalDefect, ExternalDefectBuilder> {
+    implements
+        Builder<ExternalDefect, ExternalDefectBuilder>,
+        EntityBuilder<int> {
   _$ExternalDefect _$v;
 
   int _id;
@@ -146,7 +148,7 @@ class ExternalDefectBuilder
   }
 
   @override
-  void replace(ExternalDefect other) {
+  void replace(covariant ExternalDefect other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
