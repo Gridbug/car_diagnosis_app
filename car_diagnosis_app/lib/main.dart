@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:car_diagnosis_app/global_providers/memory_repository_provider.dart';
+import 'package:car_diagnosis_app/global_providers/sqlite_repository_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_file.dart';
@@ -10,17 +12,23 @@ import 'package:car_diagnosis_app/app.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqlbrite/sqlbrite.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   // await initializeDateFormatting(Intl.defaultLocale);
 
   runApp(
-    Provider.value(
-      value: await initDatabase(),
+    MemoryRepositoryProviders(
       child: MyApp(),
     ),
   );
+
+  // runApp(
+  //   SqliteRepositoryProviders(
+  //     db: await initDatabase(),
+  //     userId: "1",
+  //     child: MyApp(),
+  //   ),
+  // );
 }
 
 Future<BriteDatabase> initDatabase() async {
