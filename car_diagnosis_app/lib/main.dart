@@ -16,8 +16,8 @@ void main() async {
   // await initializeDateFormatting(Intl.defaultLocale);
 
   runApp(
-    Provider(
-      create: (context) => initDatabase(),
+    Provider.value(
+      value: await initDatabase(),
       child: MyApp(),
     ),
   );
@@ -25,7 +25,7 @@ void main() async {
 
 Future<BriteDatabase> initDatabase() async {
   var databasesPath = await getDatabasesPath();
-  String path = join(databasesPath, 'demo.db');
+  String path = join(databasesPath, 'car_diagnosis_app.db');
 
   final migrations = [
     '1_db_scheme.sql',
