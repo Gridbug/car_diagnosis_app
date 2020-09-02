@@ -12,6 +12,7 @@ abstract class ExternalDefectPhoto implements Built<ExternalDefectPhoto, Externa
 
   static Serializer<ExternalDefectPhoto> get serializer => _$externalDefectPhotoSerializer;
 
+  @nullable
   int get id;
 
   @BuiltValueField(wireName: 'external_defect_id')

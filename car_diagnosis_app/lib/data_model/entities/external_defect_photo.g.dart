@@ -24,12 +24,16 @@ class _$ExternalDefectPhotoSerializer
       Serializers serializers, ExternalDefectPhoto object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'external_defect_id',
       serializers.serialize(object.externalDefectId,
           specifiedType: const FullType(int)),
     ];
+    if (object.id != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(object.id,
+            specifiedType: const FullType(int)));
+    }
     if (object.photo != null) {
       result
         ..add('photo')
@@ -97,9 +101,6 @@ class _$ExternalDefectPhoto extends ExternalDefectPhoto {
   _$ExternalDefectPhoto._(
       {this.id, this.externalDefectId, this.photo, this.description})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('ExternalDefectPhoto', 'id');
-    }
     if (externalDefectId == null) {
       throw new BuiltValueNullFieldError(
           'ExternalDefectPhoto', 'externalDefectId');

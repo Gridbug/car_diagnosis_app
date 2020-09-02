@@ -20,11 +20,15 @@ class _$ExternalDefectSerializer
   Iterable<Object> serialize(Serializers serializers, ExternalDefect object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'car_id',
       serializers.serialize(object.carId, specifiedType: const FullType(int)),
     ];
+    if (object.id != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(object.id,
+            specifiedType: const FullType(int)));
+    }
     if (object.name != null) {
       result
         ..add('name')
@@ -77,9 +81,6 @@ class _$ExternalDefect extends ExternalDefect {
       (new ExternalDefectBuilder()..update(updates)).build();
 
   _$ExternalDefect._({this.id, this.carId, this.name}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('ExternalDefect', 'id');
-    }
     if (carId == null) {
       throw new BuiltValueNullFieldError('ExternalDefect', 'carId');
     }

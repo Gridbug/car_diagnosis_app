@@ -12,6 +12,7 @@ abstract class TirePhoto implements Built<TirePhoto, TirePhotoBuilder>, Entity<i
 
   static Serializer<TirePhoto> get serializer => _$tirePhotoSerializer;
 
+  @nullable
   int get id;
 
   @BuiltValueField(wireName: 'tire_id')

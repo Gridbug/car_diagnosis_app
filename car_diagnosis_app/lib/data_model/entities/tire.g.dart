@@ -18,15 +18,18 @@ class _$TireSerializer implements StructuredSerializer<Tire> {
   Iterable<Object> serialize(Serializers serializers, Tire object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'car_id',
       serializers.serialize(object.carId, specifiedType: const FullType(int)),
       'tire_side',
       serializers.serialize(object.tireSide,
           specifiedType: const FullType(int)),
     ];
-
+    if (object.id != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(object.id,
+            specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -72,9 +75,6 @@ class _$Tire extends Tire {
       (new TireBuilder()..update(updates)).build();
 
   _$Tire._({this.id, this.carId, this.tireSide}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('Tire', 'id');
-    }
     if (carId == null) {
       throw new BuiltValueNullFieldError('Tire', 'carId');
     }

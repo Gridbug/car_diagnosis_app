@@ -18,12 +18,15 @@ class _$CarSerializer implements StructuredSerializer<Car> {
   Iterable<Object> serialize(Serializers serializers, Car object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
     ];
-
+    if (object.id != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(object.id,
+            specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -63,9 +66,6 @@ class _$Car extends Car {
       (new CarBuilder()..update(updates)).build();
 
   _$Car._({this.id, this.name}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('Car', 'id');
-    }
     if (name == null) {
       throw new BuiltValueNullFieldError('Car', 'name');
     }

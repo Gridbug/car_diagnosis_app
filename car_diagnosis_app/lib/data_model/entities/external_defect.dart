@@ -10,6 +10,7 @@ abstract class ExternalDefect implements Built<ExternalDefect, ExternalDefectBui
 
   static Serializer<ExternalDefect> get serializer => _$externalDefectSerializer;
 
+  @nullable
   int get id;
 
   @BuiltValueField(wireName: 'car_id')

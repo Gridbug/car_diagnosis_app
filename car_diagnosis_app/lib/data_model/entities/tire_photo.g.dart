@@ -18,11 +18,15 @@ class _$TirePhotoSerializer implements StructuredSerializer<TirePhoto> {
   Iterable<Object> serialize(Serializers serializers, TirePhoto object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'tire_id',
       serializers.serialize(object.tireId, specifiedType: const FullType(int)),
     ];
+    if (object.id != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(object.id,
+            specifiedType: const FullType(int)));
+    }
     if (object.photo != null) {
       result
         ..add('photo')
@@ -87,9 +91,6 @@ class _$TirePhoto extends TirePhoto {
 
   _$TirePhoto._({this.id, this.tireId, this.photo, this.description})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('TirePhoto', 'id');
-    }
     if (tireId == null) {
       throw new BuiltValueNullFieldError('TirePhoto', 'tireId');
     }

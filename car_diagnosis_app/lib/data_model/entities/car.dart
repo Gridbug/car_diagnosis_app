@@ -10,6 +10,7 @@ abstract class Car implements Built<Car, CarBuilder>, Entity<int> {
 
   static Serializer<Car> get serializer => _$carSerializer;
 
+  @nullable
   int get id;
 
   String get name;

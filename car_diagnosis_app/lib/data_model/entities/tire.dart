@@ -10,6 +10,7 @@ abstract class Tire implements Built<Tire, TireBuilder>, Entity<int> {
 
   static Serializer<Tire> get serializer => _$tireSerializer;
 
+  @nullable
   int get id;
 
   @BuiltValueField(wireName: 'car_id')
