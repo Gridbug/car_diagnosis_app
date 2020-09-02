@@ -19,7 +19,7 @@ abstract class SqliteRepository<T extends Entity<int>>
   @protected
   List<String> get references => [];
 
-  SqliteRepository(this.db, this.userId);
+  SqliteRepository(this.db, this.userId) : assert(db != null);
 
   @override
   Future<int> create(Entity<int> entity, [Map<String, dynamic> meta]) async {
