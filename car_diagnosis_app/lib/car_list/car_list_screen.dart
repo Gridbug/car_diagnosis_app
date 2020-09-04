@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CarListScreen extends StatefulWidget {
-  CarListScreen({Key key}) : super(key: key);
+  static const routeName = 'CarListScreen';
 
   @override
   _CarListScreenState createState() => _CarListScreenState();
@@ -19,6 +19,10 @@ class _CarListScreenState extends State<CarListScreen> {
         child: StreamBuilder<List<Car>>(
           stream: Provider.of<CarRepository>(context).all,
           builder: (context, carsSnapshot) {
+            if (!carsSnapshot.hasData) {
+              return Container();
+            }
+
             return ListView.separated(
               itemCount: carsSnapshot.data.length,
               itemBuilder: (context, itemId) {
