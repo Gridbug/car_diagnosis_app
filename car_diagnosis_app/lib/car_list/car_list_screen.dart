@@ -1,3 +1,4 @@
+import 'package:car_diagnosis_app/car_list/car_creation_screen.dart';
 import 'package:car_diagnosis_app/data_model/entities/car.dart';
 import 'package:car_diagnosis_app/repositories/entities/car.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +43,10 @@ class _CarListScreenState extends State<CarListScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Provider.of<CarRepository>(context, listen: false).create(
-            Car((b) => b..name = "New car"),
-          );
+          // Provider.of<CarRepository>(context, listen: false).create(
+          //   Car((b) => b..name = "New car"),
+          // );
+          Navigator.pushNamed(context, CarCreationScreen.routeName);
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
